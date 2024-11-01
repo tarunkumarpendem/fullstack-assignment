@@ -33,13 +33,13 @@ jobs:
         run: |
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update
-          sudo apt install -y python3.12 python3.12-venv python3.12-distutils
+          sudo apt install -y python3.12 python3.12-venv
           curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
           python3.12 -m venv venv
           source venv/bin/activate
           python -m pip install --upgrade pip
-          pip3 install -r requirements.txt
-          pip3 install django mysqlclient python-dotenv python-decouple django-cors-headers djangorestframework django-nested-admin openai
+          pip install -r requirements.txt
+          pip install django mysqlclient python-dotenv python-decouple django-cors-headers djangorestframework django-nested-admin openai
           cp .env.example .env
           echo '9km$(y_v+w_9cc^%z31e0g#7r8kp_6@(2i2ayqsb%rlxtoqic&' > .env
 
