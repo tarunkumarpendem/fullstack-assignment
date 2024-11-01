@@ -15,12 +15,11 @@ jobs:
 
       - name: Set up Node.js
         run: |
-          sudo apt update -y && sudo apt upgrade -y
+          sudo apt update -y
           sudo apt remove --purge nodejs npm -y
           sudo rm /etc/apt/sources.list.d/nodesource.list
           curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
           sudo apt install -y nodejs
-          sudo apt --fix-broken install
           sudo apt install npm -y
           cp .env.local.example .env.local
 
@@ -63,6 +62,6 @@ jobs:
         run: |
           sudo cp -r backend/django-app.service /etc/systemd/system/django-app.service
           sudo systemctl daemon-reload
-          #sudo systemctl start django-app.service
-          #sudo systemctl enable django-app.service
-          #sudo systemctl status django-app.service
+          sudo systemctl start django-app.service
+          sudo systemctl enable django-app.service
+          sudo systemctl status django-app.service
