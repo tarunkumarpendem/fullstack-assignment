@@ -31,16 +31,26 @@ jobs:
 
       - name: Install Python Dependencies
         run: |
-          sudo add-apt-repository ppa:deadsnakes/ppa -y
-          sudo apt update
-          sudo apt install -y python3.12 python3.12-venv
-          curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
-          python3.12 -m venv venv
+          sudo apt install -y python3 python3-pip python3-venv
+          sudo apt install -y pkg-config libmysqlclient-dev
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3 get-pip.py
+          pip3 install django
+          python3 -m venv venv
           source venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install django mysqlclient python-dotenv python-decouple django-cors-headers djangorestframework django-nested-admin openai
+          pip3 install -r requirements.txt
+          source venv/bin/activate
+          sudo pip3 install virtualenv
+          pip3 install django mysqlclient
+          pip3 install python-dotenv
           cp .env.example .env
+          python3 manage.py migrate
+          pip3 install python-decouple
+          pip3 install django-cors-headers
+          pip3 install djangorestframework
+          pip3 install django-nested-admin
+          pip3 install openai
+          python3 manage.py migrate
           echo '9km$(y_v+w_9cc^%z31e0g#7r8kp_6@(2i2ayqsb%rlxtoqic&' > .env
 
       - name: Run Django Migrations
