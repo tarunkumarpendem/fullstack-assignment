@@ -31,6 +31,7 @@ jobs:
 
       - name: Install Python Dependencies
         run: |
+          cd backend
           sudo apt install -y python3 python3-pip python3-venv
           sudo apt install -y pkg-config libmysqlclient-dev
           curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
