@@ -18,11 +18,13 @@ jobs:
           sudo apt update -y
           curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
           sudo apt install -y nodejs
-          cp .env.local.example .env.local
+          node --version
+          npm --version
 
       - name: Install Frontend Dependencies
         run: |
           cd frontend
+          cp .env.local.example .env.local
           npm install
           npm run build
 
