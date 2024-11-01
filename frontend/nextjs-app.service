@@ -4,10 +4,11 @@ After=network.target
 
 [Service]
 User=ubuntu
-WorkingDirectory=~/fullstack-assignment/frontend
+WorkingDirectory=/home/ubuntu/fullstack-assignment/frontend
 ExecStart=/usr/bin/npm start
 Restart=always
 Environment=NODE_ENV=production
 
 [Install]
 WantedBy=multi-user.target
+

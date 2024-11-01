@@ -55,6 +55,7 @@ jobs:
           sudo systemctl daemon-reload
           sudo systemctl start nextjs-app.service
           sudo systemctl enable nextjs-app.service
+          sudo systemctl restart nextjs-app.service
           sudo systemctl status nextjs-app.service
 
       - name: Deploy Backend
