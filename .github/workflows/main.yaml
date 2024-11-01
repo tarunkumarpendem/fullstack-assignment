@@ -32,31 +32,32 @@ jobs:
       - name: Install Python Dependencies
         run: |
           cd backend
-          sudo apt install -y python3 python3-pip python3-venv
-          sudo apt install -y pkg-config libmysqlclient-dev
-          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          python3 get-pip.py
-          pip3 install django
+          # Ensure the system is updated
+          sudo apt update
+
+          # Install necessary packages
+          sudo apt install -y python3 python3-pip python3-venv pkg-config libmysqlclient-dev
+
+          # Create and activate a virtual environment
           python3 -m venv venv
           source venv/bin/activate
+
+          # Upgrade pip in the virtual environment
+          pip3 install --upgrade pip
+
+          # Install project dependencies
           pip3 install -r requirements.txt
-          source venv/bin/activate
-          sudo pip3 install virtualenv
-          pip3 install django mysqlclient
-          pip3 install python-dotenv
-          pip3 install python-decouple
-          pip3 install django-cors-headers
-          pip3 install djangorestframework
-          pip3 install django-nested-admin
-          pip3 install openai
+
+          # Set up environment variables
           cp .env.example .env
           echo '9km$(y_v+w_9cc^%z31e0g#7r8kp_6@(2i2ayqsb%rlxtoqic&' > .env
-          source venv/bin/activate
+
+          # Run Django migrations
           python3 manage.py migrate
 
       - name: Deploy Frontend
         run: |
-          sudo cp -r nextjs-app.service /etc/systemd/system/nextjs-app.service
+          sudo cp -r frontend/nextjs-app.service /etc/systemd/system/nextjs-app.service
           sudo systemctl daemon-reload
           sudo systemctl start nextjs-app.service
           sudo systemctl enable nextjs-app.service
@@ -64,7 +65,7 @@ jobs:
 
       - name: Deploy Backend
         run: |
-          sudo cp -r django-app.service /etc/systemd/system/django-app.service
+          sudo cp -r backend/django-app.service /etc/systemd/system/django-app.service
           sudo systemctl daemon-reload
           sudo systemctl start django-app.service
           sudo systemctl enable django-app.service
