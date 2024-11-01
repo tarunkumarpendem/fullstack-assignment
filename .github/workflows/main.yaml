@@ -16,8 +16,6 @@ jobs:
       - name: Set up Node.js
         run: |
           sudo apt update -y
-          sudo apt remove --purge nodejs npm -y
-          sudo rm /etc/apt/sources.list.d/nodesource.list
           curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
           sudo apt install -y nodejs
           sudo apt install npm -y
