@@ -51,7 +51,8 @@ jobs:
 
           # Set up environment variables
           cp .env.example .env
-          echo '9km$(y_v+w_9cc^%z31e0g#7r8kp_6@(2i2ayqsb%rlxtoqic&' > .env
+          cp -r ~/test.env .env
+          cat .env
 
           # Run Django migrations
           venv/bin/python3 manage.py migrate
